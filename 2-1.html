@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas学习</title>
+</head>
+<style>
+    #qcanvas {
+        display: block;
+        margin: 50px auto;
+        border: 1px solid #ccc;
+    }
+</style>
+<body>
+    <canvas id="qcanvas" width="1024" height="768">
+        当前浏览器不支持canvas
+    </canvas>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById('qcanvas');
+            var context = canvas.getContext('2d');
+            // 画多边形
+            context.beginPath();
+            context.moveTo(100, 100);
+            context.lineTo(100, 700);
+            context.lineTo(700, 700);
+            context.lineTo(100, 100);
+            context.closePath();
+
+            // 填充色
+            // context.fillStyle = "rgb(2, 100, 30)";
+            // context.fill();
+            context.lineWidth = 5;
+            context.strokeStyle = "#fd4a08";
+            context.stroke();
+
+            context.beginPath();
+            context.moveTo(200, 100);
+            context.lineTo(700, 600);
+            context.closePath();
+
+            context.lineWidth = 2;
+            context.strokeStyle = "skyblue";
+            context.stroke();
+        }
+    </script>
+</body>
+</html>

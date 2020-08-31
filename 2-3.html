@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas学习 - 弧线</title>
+</head>
+<style>
+    #qcanvas {
+        display: block;
+        margin: 50px auto;
+        border: 1px solid #ccc;
+    }
+</style>
+<body>
+    <canvas id="qcanvas" width="1024" height="800">
+        当前浏览器不支持canvas
+    </canvas>
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById('qcanvas');
+            var context = canvas.getContext('2d');
+
+            context.lineWidth = 2;
+            context.strokeStyle = "#005588";
+
+            // context.arc(
+            //     centerx, centery, // 圆心位置
+            //     radius, // 半径长度
+            //     startingAngle, endingAngle, // 开始和结束的弧度值
+            //     anticlockwise = false, // 是否逆时针
+            // )
+
+            for (var i = 1; i < 11; i++) {
+                context.beginPath();
+                context.arc(80 * i, 200, 30, 0, 0.2 * i * Math.PI, false);
+                context.closePath();
+                context.stroke();
+            }
+
+            for (var i = 1; i < 11; i++) {
+                context.beginPath();
+                context.arc(80 * i, 300, 30, 0, 0.2 * i * Math.PI, true);
+                context.closePath();
+                context.stroke();
+            }
+
+            for (var i = 1; i < 11; i++) {
+                context.beginPath();
+                context.arc(80 * i, 400, 30, 0, 0.2 * i * Math.PI, false);
+                // context.closePath();
+                context.stroke();
+            }
+
+            for (var i = 1; i < 11; i++) {
+                context.beginPath();
+                context.arc(80 * i, 500, 30, 0, 0.2 * i * Math.PI, false);
+                // context.closePath();
+                // context.stroke();
+                context.fillStyle = "red";
+                context.fill();
+            }
+        }
+    </script>
+</body>
+</html>
