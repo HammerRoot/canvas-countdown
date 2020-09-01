@@ -35,9 +35,9 @@ function renderDigit(x , y, num, cxt, color) {
 
     cxt.fillStyle = color;
 
-    for (var i = 0; i < digit[num].length; i++) {
-        for (var j = 0; j < digit[num][i].length; j++) {
-            if (digit[num][i][j] === 1) {
+    for (var i = 0; i < DIGIT[num].length; i++) {
+        for (var j = 0; j < DIGIT[num][i].length; j++) {
+            if (DIGIT[num][i][j] === 1) {
                 cxt.beginPath();
                 cxt.arc(x+j*2*(RADIUS+1)+(RADIUS+1), y+i*2*(RADIUS+1)+(RADIUS+1), RADIUS, 0, 2*Math.PI);
                 cxt.closePath();

@@ -1,58 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Canvas学习 - 弧线</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Canvas学习 - 点阵</title>
 </head>
 <style>
-    #qcanvas {
-        display: block;
-        margin: 50px auto;
-        border: 1px solid #ccc;
-    }
+  #qcanvas {
+    display: block;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+  }
 </style>
 <body>
-    <canvas id="qcanvas" width="1024" height="800">
-        当前浏览器不支持canvas
-    </canvas>
-    <script>
-        window.onload = function() {
-          var RADUIS = 4;
-          var canvas = document.getElementById('qcanvas');
-          var context = canvas.getContext('2d');
+  <canvas id="qcanvas" width="1024" height="800">
+    当前浏览器不支持canvas
+  </canvas>
+  <script>
+      window.onload = function() {
+        var RADUIS = 4;
+        var canvas = document.getElementById('qcanvas');
+        var context = canvas.getContext('2d');
 
-           var five = [
-             [1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 0, 0, 0, 0, 0],
-             [1, 1, 0, 0, 0, 0, 0],
-             [1, 1, 1, 1, 1, 1, 0],
-             [0, 0, 0, 0, 0, 1, 1],
-             [0, 0, 0, 0, 0, 1, 1],
-             [0, 0, 0, 0, 0, 1, 1],
-             [0, 0, 0, 0, 0, 1, 1],
-             [1, 1, 0, 0, 0, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1],
-           ];
-           drawNumber(five, context);
 
-           function drawNumber(dots, ctx) {
-             ctx.fillStyle = "skyblue";
-             for(var i = 0; i < dots.length; i++) {
-               var elemnt = dots[i];
-               for (var j = 0; j < elemnt.length; j++) {
-                 if (elemnt[j] === 1) {
-                   ctx.beginPath();
-                   ctx.arc(50 + (2 * j + 1) * (RADUIS + 1), 50 + (2 * i + 1) * (RADUIS + 1), RADUIS, 0, 2 * Math.PI);
-                   ctx.closePath();
-                   ctx.fill();
-                 }
-               }
-             }
-           }
+        const two = [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ];
+        draw(two, context, '#43658b', { x: 100, y: 100 });
+
+        const love = [
+          [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0],
+          [0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+          [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+          [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+          [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+        ];
+        draw(love, context, '#ed6663', { x: 400, y: 100 });
+
+        function draw(dots, ctx, color, start) {
+          ctx.fillStyle = color;
+          for(var i = 0; i < dots.length; i++) {
+            var elemnt = dots[i];
+            for (var j = 0; j < elemnt.length; j++) {
+              if (elemnt[j] === 1) {
+                ctx.beginPath();
+                ctx.arc(start.x + (2 * j + 1) * (RADUIS + 1), start.y + (2 * i + 1) * (RADUIS + 1), RADUIS, 0, 2 * Math.PI);
+                ctx.closePath();
+                ctx.fill();
+              }
+            }
+          }
         }
+      }
 
-    </script>
+  </script>
 </body>
 </html>

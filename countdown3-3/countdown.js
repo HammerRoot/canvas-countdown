@@ -4,7 +4,7 @@ var RADIUS = 8;
 var MARGIN_TOP = 60;
 var MARGIN_LEFT = 30;
 
-const endTime = new Date('2020-08-31 23:18:56');
+const endTime = new Date('2020-09-01 23:18:56');
 
 window.onload = function() {
 
