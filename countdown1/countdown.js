@@ -4,8 +4,7 @@ var RADIUS = 8;
 var MARGIN_TOP = 60;
 var MARGIN_LEFT = 30;
 
-const endTime = new Date('2020-09-04 12:13:14');
-var curShowTimeSeconds;
+const endTime = new Date('2020-09-05 23:18:56');
 
 window.onload = function() {
 
@@ -15,16 +14,10 @@ window.onload = function() {
     canvas.width = WINDOW_WIDTH;
     canvas.height = WINDOW_HEIGHT;
 
-    curShowTimeSeconds = getCurrentShowTimeSeconds();
-    render(context);
-
-    setInterval(() => {
-        update();
-        render(context);
-    }, 1000);
+    var curShowTimeSeconds = getCurrentShowTimeSeconds();
+    render(context, curShowTimeSeconds);
 }
 
-// 获取截止日期到当前时间秒数差
 function getCurrentShowTimeSeconds() {
     var curTime = new Date();
     var ret = endTime.getTime() - curTime.getTime();
@@ -32,27 +25,8 @@ function getCurrentShowTimeSeconds() {
     return Math.max(0, ret);
 }
 
-// 更新时间
-function update() {
-    var nextShowTimeSeconds = getCurrentShowTimeSeconds();
+function render(cxt, curShowTimeSeconds) {
 
-    var nextHours = parseInt(nextShowTimeSeconds / 3600, 10);
-    var nextMinutes = parseInt((nextShowTimeSeconds - nextHours * 3600) / 60, 10);
-    var nextSeconds = nextShowTimeSeconds % 60;
-
-    var curHours = parseInt(curShowTimeSeconds / 3600, 10);
-    var curMinutes = parseInt((curShowTimeSeconds - curHours * 3600) / 60, 10);
-    var curSeconds = curShowTimeSeconds % 60;
-
-    if (nextSeconds !== curSeconds) { // 更新当前显示时间
-        curShowTimeSeconds = nextShowTimeSeconds;
-    }
-}
-
-function render(cxt) {
-
-    // 刷新图像
-    cxt.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     var hours = parseInt(curShowTimeSeconds / 3600, 10);
     var minutes = parseInt((curShowTimeSeconds - hours * 3600) / 60, 10);
     var seconds = curShowTimeSeconds % 60;

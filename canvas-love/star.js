@@ -59,8 +59,8 @@ function Star(x, y, length, opacity) {
     this.y = parseInt(y);
     this.length = parseInt(length);
     this.opacity = opacity;
-    this.factor = 1;
-    this.increment = Math.random() * 0.03;
+    this.factor = 1; // 亮度是增还是减
+    this.increment = Math.random() * 0.03; // 亮度增减幅度
 }
 
 //对象原型方法
@@ -72,10 +72,10 @@ function Star(x, y, length, opacity) {
 Star.prototype.draw = function (context) {
     context.rotate(Math.PI * 1 / 10);
 
-    //save the context
+    // 保存状态
     context.save();
     context.translate(this.x, this.y);
-    //change the opacity
+    // 忽明忽暗
     if (this.opacity > 1) {
         this.factor = -1;
     } else if (this.opacity <= 0) {
