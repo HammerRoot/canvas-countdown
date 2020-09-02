@@ -4,14 +4,22 @@ var RADIUS = 8;
 var MARGIN_TOP = 60;
 var MARGIN_LEFT = 30;
 
-let endTime = new Date();
+const endTime = new Date();
 endTime.setTime(endTime.getTime() + 3600 * 1000);
-var curShowTimeSeconds = 0;
+var curShowTimeSeconds = 0
 
 var balls = [];
 const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"]
 
 window.onload = function(){
+
+    WINDOW_WIDTH = document.body.clientWidth
+    WINDOW_HEIGHT = document.body.clientHeight
+
+    MARGIN_LEFT = Math.round(WINDOW_WIDTH /10);
+    RADIUS = Math.round(WINDOW_WIDTH * 4 / 5 / 108)-1
+
+    MARGIN_TOP = Math.round(WINDOW_HEIGHT /5);
 
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext("2d");
@@ -76,6 +84,8 @@ function update(){
     }
 
     updateBalls();
+
+    console.log( balls.length)
 }
 
 function updateBalls(){
@@ -90,6 +100,15 @@ function updateBalls(){
             balls[i].y = WINDOW_HEIGHT-RADIUS;
             balls[i].vy = - balls[i].vy*0.75;
         }
+    }
+
+    var cnt = 0
+    for( var i = 0 ; i < balls.length ; i ++ )
+        if( balls[i].x + RADIUS > 0 && balls[i].x -RADIUS < WINDOW_WIDTH )
+            balls[cnt++] = balls[i]
+
+    while( balls.length > cnt ){
+        balls.pop();
     }
 }
 
