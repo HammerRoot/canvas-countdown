@@ -178,6 +178,9 @@ function renderLove(ctx) {
     ctx.stroke(); //对路径描边
     if (radian <= (2*Math.PI)) { //绘制完整的心型线后取消间歇调用 
       requestAnimationFrame(heart);
+    } else {
+      love1.className = "animate__animated animate__heartBeat animate__infinite";
+      love2.className = "animate__animated animate__heartBeat animate__infinite";
     }
   }
   heart();
