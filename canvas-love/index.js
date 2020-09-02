@@ -22,7 +22,7 @@ window.onload = function () {
   canvas.width = WINDOW_WIDTH;
   canvas.height = WINDOW_HEIGHT;
 
-  let counter = setInterval(() => {
+  let counter = setInterval(function() {
     const number = COUNTS.shift();
     if (number) {
       renderCount(context, number);
@@ -44,17 +44,17 @@ function renderCount(context, number) {
 function removeWelcome() {
   let welcome = document.getElementById('welcome');
   welcome.className = "welcome animate__animated animate__lightSpeedOutRight";
-  welcome.onanimationend = () => {
+  welcome.addEventListener('animationend', function() {
     document.body.removeChild(welcome);
     welcome = null;
-  }
+  });
 }
 
 // 数字原地爆炸
 function numberBoom(ctx) {
   addBalls(LAST.num); // 在最后一个数字的基础上出现五颜六色的小球
 
-  let boom = setInterval(() => {
+  let boom = setInterval(function() {
     renderBalls(ctx);
     updateBalls();
 
@@ -125,12 +125,12 @@ function updateBalls() {
 }
 
 function renderStarSky(ctx) {
-  const starsky = document.getElementById('starsky');
+  let starsky = document.getElementById('starsky');
   starsky.className = "animate__animated animate__fadeIn";
   RenderStarSky(starsky); // 渲染星空 star.js
-  starsky.onanimationend = () => {
+  starsky.addEventListener('animationend', function() {
     renderLove(ctx);
-  }
+  });
 }
 
 // 表白部分
@@ -144,7 +144,7 @@ function renderLove(ctx) {
   love2.className = `animate__animated animate__rotateIn`;
 
   let radian = 0; // 设置初始弧度
-  const radian_add = Math.PI / 120; // 设置弧度增量
+  const radian_add = Math.PI / 30; // 设置弧度增量
 
   const marginTop = Math.round(WINDOW_HEIGHT / 2);
   const marginLeft = Math.round(WINDOW_WIDTH / 2);
